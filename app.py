@@ -240,29 +240,62 @@ We will ship your items soon!"""
 
     return render_template('checkout.html')
 
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user_table.put_item(Item={'email': email, 'password': password})
+
+        # ✅ Hash the password
+        hashed_pw = hashpw(password.encode('utf-8'), gensalt())
+
+        # ✅ Generate a unique User_id
+        user_id = str(uuid.uuid4())
+
+        # ✅ Save all required fields
+        user_table.put_item(Item={
+            'User_id': user_id,
+            'email': email,
+            'password': hashed_pw.decode('utf-8')
+        })
+
+        # ✅ Send welcome email
         send_email(email, "Welcome to Pickle Paradise", "Thank you for signing up!")
+
         flash("Signup successful! Please log in.", "success")
         return redirect(url_for('login'))
+
     return render_template('signup.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
-        user = user_table.get_item(Key={'email': email}).get('Item')
-        if user and user['password'] == password:
-            session['user'] = email
-            flash("Login successful!", "success")
-            return redirect(url_for('home'))
+
+        # ✅ DynamoDB key must be the same as your table's PRIMARY KEY
+        # If 'email' is not your primary key, you must query by index.
+        response = user_table.scan(
+            FilterExpression=Attr('email').eq(email)
+        )
+        items = response.get('Items', [])
+
+        if items:
+            user = items[0]
+            hashed_pw = user['password'].encode('utf-8')
+
+            if checkpw(password.encode('utf-8'), hashed_pw):
+                session['user'] = email
+                flash("Login successful!", "success")
+                return redirect(url_for('home'))
+
         flash("Invalid credentials", "danger")
+
     return render_template('login.html')
+
+
 
 @app.route('/logout')
 def logout():
