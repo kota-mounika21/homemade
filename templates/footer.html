@@ -1,0 +1,125 @@
+<footer class="site-footer">
+  <style>
+    .site-footer {
+      background-color: #ff9800;
+      color: #fff;
+      padding: 40px 20px 20px 20px;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px; /* slightly smaller gap for tighter fit */
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .footer-column.brand {
+      flex: 2; /* Brand column takes 2x space */
+      min-width: 300px;
+    }
+
+    .footer-column h3,
+    .footer-column h4 {
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .footer-column p,
+    .footer-column ul,
+    .footer-column li,
+    .footer-column a {
+      color: #fff;
+      font-size: 14px;
+      text-decoration: none;
+      list-style: none;
+    }
+
+    .footer-column ul {
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 8px;
+    }
+
+    .footer-column a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.4);
+      padding-top: 15px;
+      font-size: 13px;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .footer-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .footer-column {
+        min-width: 100%;
+      }
+
+      .footer-column.brand {
+        flex: 1; /* Remove double flex on mobile */
+      }
+    }
+  </style>
+
+  <div class="footer-container">
+
+    <div class="footer-column brand">
+      <h3>HomeMade Pickles & Snacks</h3>
+      <p>Preserving traditions, one jar at a time. Authentic</p>
+      <p>homemade pickles and snacks delivered fresh</p>
+      <p> to your doorstep.</p>
+    </div>
+
+    <div class="footer-column">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About Us</a></li>
+        <li><a href="{{ url_for('home') }}">Products</a></li>
+        <li><a href="{{ url_for('contact_us') }}">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="{{ url_for('show_veg_pickles') }}">Vegetarian Pickles</a></li>
+        <li><a href="{{ url_for('show_non_veg_pickles') }}">Non-Veg Pickles</a></li>
+        <li><a href="{{ url_for('show_snacks') }}">Traditional Snacks</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-column">
+      <h4>Contact Info</h4>
+      <p>📞 +91 9876543210</p>
+      <p>📧 info@homemadepickles.com</p>
+      <p>📍 Traditional Kitchen, India</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 HomeMade Pickles & Snacks. All rights reserved.
+  </div>
+</footer>

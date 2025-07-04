@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Cart - Pickle Paradise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="cart-page">
+
+<nav>
+  <a href="{{ url_for('home') }}">🏠 Home</a>
+  <a href="{{ url_for('show_veg_pickles') }}">🥭 Veg Pickles</a>
+  <a href="{{ url_for('show_non_veg_pickles') }}">🍗 Non-Veg Pickles</a>
+  <a href="{{ url_for('show_snacks') }}">🍘 Snacks</a>
+  <a href="{{ url_for('view_cart') }}">🛒 Cart</a>
+  <a href="{{ url_for('contact_us') }}">📞 Contact Us</a>
+  <a href="{{ url_for('about') }}">ℹ️ About Us</a>
+</nav>
+
+<h1>Your Shopping Cart</h1>
+
+{% if cart_items %}
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Weight</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>₹{{ item.price }}</td>
+        <td>{{ item.weight }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('update_quantity') }}">
+            <input type="hidden" name="item_name" value="{{ item.name }}">
+            <input type="hidden" name="change" value="1">
+            <button type="submit">+</button>
+          </form>
+          <form method="POST" action="{{ url_for('update_quantity') }}">
+            <input type="hidden" name="item_name" value="{{ item.name }}">
+            <input type="hidden" name="change" value="-1">
+            <button type="submit">-</button>
+          </form>
+          <form method="POST" action="{{ url_for('remove_from_cart') }}">
+            <input type="hidden" name="item_name" value="{{ item.name }}">
+            <button type="submit">Remove</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="total">
+    <strong>Total:</strong> ₹{{ total }}
+  </div>
+
+  <a href="{{ url_for('checkout') }}" class="checkout">Proceed to Checkout</a>
+
+{% else %}
+  <div class="empty">
+    Your cart is empty.
+  </div>
+{% endif %}
+
+{% include 'footer.html' %}
+</body>
+</html>

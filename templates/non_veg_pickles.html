@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Non-Veg Pickles - Pickle Paradise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="non-veg-page">
+
+<nav>
+  <a href="{{ url_for('home') }}">🏠 Home</a>
+  <a href="{{ url_for('show_veg_pickles') }}">🥭 Veg Pickles</a>
+  <a href="{{ url_for('show_non_veg_pickles') }}">🍗 Non-Veg Pickles</a>
+  <a href="{{ url_for('show_snacks') }}">🍘 Snacks</a>
+  <a href="{{ url_for('view_cart') }}">
+    🛒 Cart
+    {% if session.get('cart') %}
+      ({{ session['cart'] | length }})
+    {% endif %}
+  </a>
+</nav>
+
+<h1>Non-Veg Pickles</h1>
+
+<!-- Prawn Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/prawns.jpg') }}" alt="Prawn Pickle">
+  <h2>Prawn Pickle</h2>
+  <p>Prawns cooked with fiery Andhra masala.<br>Perfect spicy pickle for seafood fans.</p>
+  <p><strong>₹599</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Prawn Pickle">
+    <input type="hidden" name="price" value="599">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Chicken Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/chiken.png') }}" alt="Chicken Pickle">
+  <h2>Chicken Pickle</h2>
+  <p>Tender chicken bits coated in spicy oil.<br>A fiery treat for meat pickle lovers.</p>
+  <p><strong>₹450</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐ 4/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Chicken Pickle">
+    <input type="hidden" name="price" value="450">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Fish Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/fish.png') }}" alt="Fish Pickle">
+  <h2>Fish Pickle</h2>
+  <p>Soft boneless fish mixed with coastal spices.<br>A tangy seafood pickle for every bite.</p>
+  <p><strong>₹599</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐ 4/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Fish Pickle">
+    <input type="hidden" name="price" value="599">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Mutton Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/mutton.jpg') }}" alt="Mutton Pickle">
+  <h2>Mutton Pickle</h2>
+  <p>Juicy mutton pieces with rich spices.<br>Bold taste that goes great with hot rice.</p>
+  <p><strong>₹650</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐ 4/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Mutton Pickle">
+    <input type="hidden" name="price" value="650">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Crab Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/crab.jpg') }}" alt="Crab Pickle">
+  <h2>Crab Pickle</h2>
+  <p>Fresh crab meat in aromatic homemade masala.<br>Adds a coastal punch to plain meals.</p>
+  <p><strong>₹699</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Crab Pickle">
+    <input type="hidden" name="price" value="699">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Gongura Mutton Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/gongura_mutton.jpg') }}" alt="Gongura_Mutton Pickle">
+  <h2>Gongura Mutton Pickle</h2>
+  <p>Juicy mutton cooked with tangy gongura.<br>A bold Andhra pickle with spicy twist.</p>
+  <p><strong>₹750</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Gongura Mutton Pickle">
+    <input type="hidden" name="price" value="750">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

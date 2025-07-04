@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Veg Pickles - Pickle Paradise</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="veg-pickles-page">
+
+<nav>
+  <a href="{{ url_for('home') }}">🏠 Home</a>
+  <a href="{{ url_for('show_veg_pickles') }}">🥭 Veg Pickles</a>
+  <a href="{{ url_for('show_non_veg_pickles') }}">🍗 Non-Veg Pickles</a>
+  <a href="{{ url_for('show_snacks') }}">🍘 Snacks</a>
+  <a href="{{ url_for('view_cart') }}">
+    🛒 Cart
+    {% if session.get('cart') %}
+      ({{ session['cart'] | length }})
+    {% endif %}
+  </a>
+</nav>
+
+<h1>Veg Pickles</h1>
+
+<!-- Mango Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/mango.jpg') }}" alt="Mango Pickle">
+  <h2>Mango Pickle</h2>
+  <p>Classic raw mango chunks with bold spices. A tangy taste that brings back tradition.</p>
+  <p><strong>₹250</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Mango Pickle">
+    <input type="hidden" name="price" value="250">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Lemon Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/lemon.jpg') }}" alt="Lemon Pickle">
+  <h2>Lemon Pickle</h2>
+  <p>Zesty lemons cured in salt and spices. Perfect balance of sour and mild heat.</p>
+  <p><strong>₹220</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐ 4/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Lemon Pickle">
+    <input type="hidden" name="price" value="220">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Tomato Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/tomato.jpg') }}" alt="Tomato Pickle">
+  <h2>Tomato Pickle</h2>
+  <p>Juicy ripe tomatoes with fiery masala. A spicy, tangy favorite for every meal.</p>
+  <p><strong>₹199</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Tomato Pickle">
+    <input type="hidden" name="price" value="199">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Amla Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/amla.jpg') }}" alt="Amla Pickle">
+  <h2>Amla Pickle</h2>
+  <p>Sour gooseberries pickled for a punch. Rich in flavor and healthy goodness.</p>
+  <p><strong>₹180</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐ 4/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Amla Pickle">
+    <input type="hidden" name="price" value="180">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Mixed Veg Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/mixed_veg_pickle.jpg') }}" alt="Mixed Veg Pickle">
+  <h2>Mixed Veg Pickle</h2>
+  <p>Seasonal veggies spiced and preserved at home. Crunchy bites bursting with flavor.</p>
+  <p><strong>₹199</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐ 4/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Mixed Veg Pickle">
+    <input type="hidden" name="price" value="199">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Red Chilli Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/red_chilli.jpg') }}" alt="Red Chilli Pickle">
+  <h2>Red Chilli Pickle</h2>
+  <p>Bright red chillies packed with tangy spice. A bold pickle that kicks up any meal.</p>
+  <p><strong>₹180</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Red Chilli Pickle">
+    <input type="hidden" name="price" value="180">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Garlic Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/garlic.jpg') }}" alt="Garlic Pickle">
+  <h2>Garlic Pickle</h2>
+  <p>Bold garlic cloves soaked in tangy oil. Strong flavor, pure homemade taste.</p>
+  <p><strong>₹199</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Garlic Pickle">
+    <input type="hidden" name="price" value="199">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+<!-- Gongura Pickle -->
+<div class="product">
+  <img src="{{ url_for('static', filename='images/gongura.jpg') }}" alt="Gongura Pickle">
+  <h2>Gongura Pickle</h2>
+  <p>Sour gongura leaves pickled Andhra style. Authentic regional taste in a jar.</p>
+  <p><strong>₹150</strong> | 500g</p>
+  <p>Rating: ⭐⭐⭐⭐⭐ 5/5</p>
+  <form method="POST" action="{{ url_for('add_to_cart') }}">
+    <input type="hidden" name="name" value="Gongura Pickle">
+    <input type="hidden" name="price" value="150">
+    <input type="hidden" name="weight" value="500g">
+    <button type="submit">Add to Cart</button>
+  </form>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>
